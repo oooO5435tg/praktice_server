@@ -2,7 +2,7 @@
     <h2>Вход в систему</h2>
     <h3><?= $message ?? ''; ?></h3>
 
-    <h3><?= app()->auth->user()->name ?? ''; ?></h3>
+    <h3><?= app()->auth->user()->surname ?? ''; ?></h3>
     <?php
     if (!app()->auth::check()):
     ?>

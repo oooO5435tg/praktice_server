@@ -2,7 +2,7 @@
     <h2>Добавление должности</h2>
     <form method="POST" action="<?= app()->route->getUrl('/add_position') ?>">
         <input type="text" name="name" id="name" required placeholder="Название" style="width: 900px; height: 60px; background-color: #F1F1F1; border: none; border-radius: 10px">
-        <button type="submit" style="width: 540px; height: 60px; background-color: #C6C6C6; border: none; border-radius: 10px; margin-top: 50px">Добавить должность</button>
+        <button type="submit" style="width: 540px; height: 60px; background-color: #C6C6C6; border: none; border-radius: 10px; margin-top: 50px">Добавить</button>
     </form>
 </div>
 
