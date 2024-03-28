@@ -1,12 +1,18 @@
-<h2><?= $message ?? ''; ?></h2>
 <div style="display: flex; flex-direction: column; align-items: center">
     <h2>Главная</h2>
     <div style="display: flex">
         <div style="background-color: #D9D9D9; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center; margin-right: 50px">
-            <h3>Дисциплины,читаемые сотрудником</h3>
-            <div style="display: flex">
-                <input type="checkbox">
-                <p>...</p>
+            <h3>Дисциплины,читаемые сотрудником(ами)</h3>
+            <div style="display: flex; flex-direction: column">
+                <?php
+                $users = \Model\User::all();
+                foreach ($users as $user) {
+                    echo "<div style='display: flex; align-items: center; margin-bottom: 10px;'>
+                            <input type='checkbox'>
+                            <p>" . e($user->surname) . "</p>
+                          </div>";
+                }
+                ?>
             </div>
             <div style="display: flex; flex-direction: column">
                 <a>Еще</a>
@@ -14,10 +20,17 @@
             </div>
         </div>
         <div style="background-color: #D9D9D9; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center; margin-right: 50px">
-            <h3>Дисциплины,читаемые сотрудником</h3>
-            <div style="display: flex">
-                <input type="checkbox">
-                <p>...</p>
+            <h3>Сотрудники по кафедре(ам)</h3>
+            <div style="display: flex; flex-direction: column">
+                <?php
+                $departments = \Model\Department::all();
+                foreach ($departments as $department) {
+                    echo "<div style='display: flex; align-items: center; margin-bottom: 10px;'>
+                <input type='checkbox'>
+                <label>" . e($department->title_department) . "</label>
+              </div>";
+                }
+                ?>
             </div>
             <div style="display: flex; flex-direction: column">
                 <a>Еще</a>
@@ -25,10 +38,17 @@
             </div>
         </div>
         <div style="background-color: #D9D9D9; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center">
-            <h3>Дисциплины,читаемые сотрудником</h3>
-            <div style="display: flex">
-                <input type="checkbox">
-                <p>...</p>
+            <h3>Дисциплины, читаемые сотрудниками по кафедре(ам)</h3>
+            <div style="display: flex; flex-direction: column">
+                <?php
+                $departments = \Model\Department::all();
+                foreach ($departments as $department) {
+                    echo "<div style='display: flex; align-items: center; margin-bottom: 10px;'>
+                <input type='checkbox'>
+                <label>" . e($department->title_department) . "</label>
+              </div>";
+                }
+                ?>
             </div>
             <div style="display: flex; flex-direction: column">
                 <a>Еще</a>
