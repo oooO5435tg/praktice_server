@@ -1,8 +1,12 @@
 <div style="display: flex; flex-direction: column; align-items: center">
+<<<<<<< HEAD
     <h2>Регистрация администратора</h2>
     <h3><?= $message ?? ''; ?></h3>
     <form method="post" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 1120px; height: 500px; background-color: #D9D9D9">
         <label><input type="text" name="name" class="signup_input" placeholder="Имя"></label>
+=======
+
+>>>>>>> 0c6c70b21a890443d6c7ce3c7b62d7a8fba6474e
         <label><input type="text" name="login" class="signup_input" placeholder="Логин"></label>
         <label><input type="password" name="password" class="signup_input" placeholder="Пароль"></label>
         <button style="width: 540px; height: 60px; background-color: #C6C6C6; border: none; border-radius: 10px">Зарегистрироваться</button>
