@@ -9,11 +9,7 @@
                 foreach ($users as $user) {
                     echo "<div style='display: flex; align-items: center; margin-bottom: 10px;'>
                             <input type='checkbox'>
-<<<<<<< HEAD
                             <label>" . e($user->name) . "</label>
-=======
-
->>>>>>> 0c6c70b21a890443d6c7ce3c7b62d7a8fba6474e
                           </div>";
                 }
                 ?>
@@ -30,13 +26,9 @@
                 $departments = \Model\Department::all();
                 foreach ($departments as $department) {
                     echo "<div style='display: flex; align-items: center; margin-bottom: 10px;'>
-<<<<<<< HEAD
                             <input type='checkbox'>
                             <label>" . e($department->title_department) . "</label>
                           </div>";
-=======
-
->>>>>>> 0c6c70b21a890443d6c7ce3c7b62d7a8fba6474e
                 }
                 ?>
             </div>
@@ -52,13 +44,9 @@
                 $departments = \Model\Department::all();
                 foreach ($departments as $department) {
                     echo "<div style='display: flex; align-items: center; margin-bottom: 10px;'>
-<<<<<<< HEAD
                             <input type='checkbox'>
                             <label>" . e($department->title_department) . "</label>
                           </div>";
-=======
-
->>>>>>> 0c6c70b21a890443d6c7ce3c7b62d7a8fba6474e
                 }
                 ?>
             </div>

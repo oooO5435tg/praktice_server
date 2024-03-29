@@ -1,12 +1,8 @@
 <div style="display: flex; flex-direction: column; align-items: center">
     <h2>Вход в систему</h2>
-<<<<<<< HEAD
     <h3><?= $message ?? ''; ?></h3>
 
     <h3><?= app()->auth->user()->name ?? ''; ?></h3>
-=======
-
->>>>>>> 0c6c70b21a890443d6c7ce3c7b62d7a8fba6474e
     <?php
     if (!app()->auth::check()):
     ?>
