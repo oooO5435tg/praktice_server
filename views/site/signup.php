@@ -1,5 +1,5 @@
 <div style="display: flex; flex-direction: column; align-items: center">
-    <h2>Регистрация нового пользователя</h2>
+    <h2>Регистрация администратора</h2>
     <h3><?= $message ?? ''; ?></h3>
     <form method="post" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 1120px; height: 500px; background-color: #D9D9D9">
         <label><input type="text" name="name" class="signup_input" placeholder="Имя"></label>

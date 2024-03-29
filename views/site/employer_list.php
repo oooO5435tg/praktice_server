@@ -3,7 +3,7 @@
     <ul>
         <?php foreach ($users as $user): ?>
             <div style="display: flex; justify-content: space-around; width: 1500px">
-                <li><?= e($user->surname) ?></li>
+                <li><?= e($user->name) ?></li>
                 <button style="width: 360px; height: 40px; background-color: #D9D9D9; border: none; border-radius: 10px; margin-bottom: 20px">Прикрепить к дисциплине</button>
             </div>
         <?php endforeach; ?>

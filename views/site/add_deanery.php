@@ -2,7 +2,7 @@
     <h2>Добавление сотрудников деканата</h2>
     <h3><?= $message ?? ''; ?></h3>
     <form method="post" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 920px; height: 800px; background-color: #D9D9D9">
-        <label><input type="text" name="surname" class="signup_input" placeholder="Фамилия"></label>
+        <label><input type="text" name="name" class="signup_input" placeholder="Фамилия"></label>
         <label><input type="text" name="name" class="signup_input" placeholder="Имя"></label>
         <label><input type="text" name="patronymic" class="signup_input" placeholder="Отчество"></label>
         <>
