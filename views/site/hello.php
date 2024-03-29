@@ -1,7 +1,7 @@
 <div style="display: flex; flex-direction: column; align-items: center">
     <h2>Главная</h2>
     <div style="display: flex">
-        <div style="background-color: #D9D9D9; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center; margin-right: 50px">
+        <div style="background-color: #ceddf5; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center; margin-right: 50px">
             <h3>Дисциплины,читаемые сотрудником(ами)</h3>
             <div style="display: flex; flex-direction: column">
                 <?php
@@ -19,7 +19,7 @@
                 <button class="hello-btn">Смотреть</button>
             </div>
         </div>
-        <div style="background-color: #D9D9D9; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center; margin-right: 50px">
+        <div style="background-color: #ceddf5; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center; margin-right: 50px">
             <h3>Сотрудники по кафедре(ам)</h3>
             <div style="display: flex; flex-direction: column">
                 <?php
@@ -37,7 +37,7 @@
                 <button class="hello-btn">Смотреть</button>
             </div>
         </div>
-        <div style="background-color: #D9D9D9; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center">
+        <div style="background-color: #ceddf5; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center">
             <h3>Дисциплины, читаемые сотрудниками по кафедре(ам)</h3>
             <div style="display: flex; flex-direction: column">
                 <?php
@@ -62,14 +62,14 @@
     form{
         width: 1120px;
         height: 400px;
-        background-color: #D9D9D9;
+        background-color: #ceddf5;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
     .hello-btn{
-        background-color: #F6F6F6;
+        background-color: #224d8c;
         width: 220px;
         height: 40px;
         border: none;
