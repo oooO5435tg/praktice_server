@@ -12,17 +12,15 @@
     <nav style="background-color: #224d8c; height: 80px; display: flex; align-items: center; justify-content: space-around">
 
         <a href="<?= app()->route->getUrl('/hello') ?>">Главная</a>
-        <a href="<?= app()->route->getUrl('/employer_list') ?>">Список сотрудников</a>
         <?php
         if (!app()->auth::check()):
             ?>
             <a href="<?= app()->route->getUrl('/login') ?>">Вход</a>
-            <a href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
         <?php
         else:
             if (app()->auth::user()->id_role === 1) :
                 ?>
-                <a href="<?= app()->route->getUrl('/add_deanery') ?>">Добавить деканата</a>
+                <a href="<?= app()->route->getUrl('/signup') ?>">Добавить деканата</a>
             <?php
             elseif (app()->auth::user()->id_role === 2) :
                 ?>

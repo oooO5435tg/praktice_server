@@ -1,5 +1,11 @@
 <div style="display: flex; flex-direction: column; align-items: center">
-    <h2>Регистрация администратора</h2>
+    <h2>
+        <?php if (app()->auth::check()): ?>
+            Добавление деканата
+        <?php else: ?>
+            Регистрация администратора
+        <?php endif; ?>
+    </h2>
     <h3><?= $message ?? ''; ?></h3>
     <form method="post" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 1120px; height: 500px; background-color: #ceddf5">
         <label><input type="text" name="name" class="signup_input" placeholder="Имя"></label>

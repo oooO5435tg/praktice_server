@@ -49,12 +49,6 @@ class Site
         return new View('site.hello', ['message' => 'hello working']);
     }
 
-    public function employerList(): string
-    {
-        $users = User::all();
-        return new View('site.employer_list', ['users' => $users]);
-    }
-
     public function addDepartment(): string
     {
         return new View('site.add_department');
@@ -68,10 +62,6 @@ class Site
         return new View('site.add_discipline');
     }
 
-    public function addDeanery(): string
-    {
-        return new View('site.add_deanery');
-    }
     public function addEmployer(): string
     {
         return new View('site.add_employer');
