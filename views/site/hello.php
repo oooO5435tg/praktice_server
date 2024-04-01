@@ -2,7 +2,7 @@
     <h2>Главная</h2>
     <div style="display: flex">
         <div style="background-color: #ceddf5; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center; margin-right: 50px">
-            <h3>Дисциплины,читаемые сотрудником(ами)</h3>
+            <h3>Посмотреть сотрудника(ов)</h3>
             <div style="display: flex; flex-direction: column">
                 <?php
                 $users = \Model\User::all();
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div style="background-color: #ceddf5; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center; margin-right: 50px">
-            <h3>Сотрудники по кафедре(ам)</h3>
+            <h3>Посмотреть кафедру(ы)</h3>
             <div style="display: flex; flex-direction: column">
                 <?php
                 $departments = \Model\Department::all();
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div style="background-color: #ceddf5; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center">
-            <h3>Дисциплины, читаемые сотрудниками по кафедре(ам)</h3>
+            <h3>Посмотреть дисциплину(ы)</h3>
             <div style="display: flex; flex-direction: column">
                 <?php
                 $departments = \Model\Department::all();

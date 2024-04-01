@@ -2,6 +2,11 @@
 
 namespace Controller;
 
+use Model\Department;
+use Model\Discipline;
+use Model\Position;
+use Model\Employer;
+
 use Model\Post;
 use Model\User;
 use Src\Request;
@@ -62,8 +67,16 @@ class Site
         return new View('site.add_discipline');
     }
 
-    public function addEmployer(): string
+    public function addEmployer(Request $request): string
     {
-        return new View('site.add_employer');
+        $employers = Employer::all();
+        $departments = Department::all();
+        $positions = Position::all();
+        $disciplines = Discipline::all();
+        if ($request->method === 'POST'&& Employer::create($request->all())){
+            app()->route->redirect('/add_employer');
+        }
+        return new View('site.add_employer', ['employers' => $employers, 'departments' => $departments,
+            'positions' => $positions, 'disciplines' => $disciplines]);
     }
 }
