@@ -7,6 +7,7 @@ return [
     //Классы для middleware
     'routeAppMiddleware' => [
         'trim' => \Middlewares\TrimMiddleware::class,
+        'specialChars' => \Middlewares\SpecialCharsMiddleware::class,
     ],
     'validators' => [
         'required' => \Validators\RequireValidator::class,
