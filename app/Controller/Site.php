@@ -79,4 +79,19 @@ class Site
         return new View('site.add_employer', ['employers' => $employers, 'departments' => $departments,
             'positions' => $positions, 'disciplines' => $disciplines]);
     }
+
+    public function disciplinesByEmployer(): string
+    {
+        return new View('site.disciplines_by_employer');
+    }
+
+    public function employerByDepartment(): string
+    {
+        return new View('site.employers_by_department');
+    }
+
+    public function disciplinesByEmployerDepartment(): string
+    {
+        return new View('site.disciplines_employer_department');
+    }
 }

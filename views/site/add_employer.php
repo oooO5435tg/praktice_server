@@ -31,14 +31,17 @@
                 <?php } ?>
             </select>
         </label>
-        <label>
-            <input type="hidden" name="id_discipline" value="">
-            <?php foreach ($disciplines as $discipline) { ?>
-                <div>
-                    <input type="checkbox" name="disciplines[]" value="<?php echo $discipline->id_discipline; ?>">
-                    <label for="disciplines[]" style="display: inline-block; margin-right: 10px;"><?php echo $discipline->title_discipline; ?></label>
-                </div>
-            <?php } ?>
+        <label style="display: flex">
+            <label>Дисциплины:</label>
+            <div>
+                <input type="hidden" name="id_discipline" value="">
+                <?php foreach ($disciplines as $discipline) { ?>
+                    <div>
+                        <input type="checkbox" name="disciplines[]" value="<?php echo $discipline->id_discipline; ?>">
+                        <label for="disciplines[]" style="display: inline-block; margin-right: 10px;"><?php echo $discipline->title_discipline; ?></label>
+                    </div>
+                <?php } ?>
+            </div>
         </label>
         <label><input type="date" name="birthday" class="signup_input" placeholder="Дата рождение"></label>
         <label><input type="text" name="adress" class="signup_input" placeholder="Адрес прописки"></label>
