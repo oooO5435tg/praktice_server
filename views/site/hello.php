@@ -1,5 +1,11 @@
 <div style="display: flex; flex-direction: column; align-items: center">
     <h2>Главная</h2>
+    <div style="width: 250px; display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 50px">
+        <h3>Поиск:</h3>
+        <a class="search" href="<?= app()->route->getUrl('/search_employer') ?>">Найти сотрудника</a>
+    </div>
+
     <div style="display: flex">
         <div style="background-color: #ceddf5; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center; margin-right: 50px">
             <h3>Дисциплины,читаемые сотрудником(ами)</h3>
@@ -79,5 +85,13 @@
         color: #b1caee;
         font-size: 16px;
         text-decoration: none;
+    }
+    .search{
+        text-decoration: none;
+        color: #224d8c;
+        font-size: 20px;
+    }
+    .search:hover{
+        text-decoration: underline;
     }
 </style>

@@ -135,6 +135,10 @@ class Site
             $employerID = $temp['employer'];
             $filteredEmployers = Employer::whereRaw("LOWER(surname) LIKE ?", ["%{$employerID}%"])->get();
 
+            if (count($filteredEmployers) === 0) {
+                return new View('site.search_employer', ['message' => 'Ничего не найдено.']);
+            }
+
             return new View('site.search_employer', ['filteredEmployers' => $filteredEmployers]);
         }
 
