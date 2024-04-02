@@ -11,6 +11,7 @@ class Employer extends Model
 
     public $timestamps = false;
     protected $fillable = [
+        'id_user',
         'surname',
         'name',
         'patronymic',
@@ -19,7 +20,5 @@ class Employer extends Model
         'adress',
         'id_department',
         'id_position',
-        'number_hours',
-        'id_list',
     ];
 }

@@ -1,6 +1,8 @@
 <div style="display: flex; flex-direction: column; align-items: center">
     <h2>Добавление сотрудников</h2>
+    <h3><?= $message ?? ''; ?></h3>
     <form method="post" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 920px; height: 1010px; background-color: #ceddf5">
+        <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <label><input type="text" name="surname" class="signup_input" placeholder="Фамилия"></label>
         <label><input type="text" name="name" class="signup_input" placeholder="Имя"></label>
         <label><input type="text" name="patronymic" class="signup_input" placeholder="Отчество"></label>
@@ -30,18 +32,6 @@
                     </option>
                 <?php } ?>
             </select>
-        </label>
-        <label style="display: flex">
-            <label>Дисциплины:</label>
-            <div>
-                <input type="hidden" name="id_discipline" value="">
-                <?php foreach ($disciplines as $discipline) { ?>
-                    <div>
-                        <input type="checkbox" name="disciplines[]" value="<?php echo $discipline->id_discipline; ?>">
-                        <label for="disciplines[]" style="display: inline-block; margin-right: 10px;"><?php echo $discipline->title_discipline; ?></label>
-                    </div>
-                <?php } ?>
-            </div>
         </label>
         <label><input type="date" name="birthday" class="signup_input" placeholder="Дата рождение"></label>
         <label><input type="text" name="adress" class="signup_input" placeholder="Адрес прописки"></label>

@@ -6,6 +6,7 @@ use Model\Department;
 use Model\Discipline;
 use Model\Position;
 use Model\Employer;
+use Model\ListDiscipline;
 
 use Model\Post;
 use Model\User;
@@ -14,6 +15,13 @@ use Src\View;
 use Src\Auth\Auth;
 
 use Src\Validator\Validator;
+
+
+
+
+use Illuminate\Support\Facades\DB;
+
+
 
 class Site
 {
@@ -100,16 +108,37 @@ class Site
 
     public function addEmployer(Request $request): string
     {
-        $employers = Employer::all();
+        $disciplines = Discipline::all();
         $departments = Department::all();
         $positions = Position::all();
-        $disciplines = Discipline::all();
-        if ($request->method === 'POST'&& Employer::create($request->all())){
-            app()->route->redirect('/add_employer');
+        if ($request->method === 'POST') {
+
+            $validator = new Validator($request->all(), [
+                'surname' => ['required'],
+                'name' => ['required'],
+                'patronymic' => ['required'],
+                'gender' => ['required'],
+                'id_position' => ['required'],
+                'id_department' => ['required'],
+                'birthday' => ['required'],
+                'adress' => ['required'],
+            ], [
+                'required' => 'Поле :field пусто',
+            ]);
+
+            if($validator->fails()){
+                return new View('site.add_employer',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+
+            if (Employer::create($request->all())) {
+                app()->route->redirect('/add_employer');
+            }
         }
-        return new View('site.add_employer', ['employers' => $employers, 'departments' => $departments,
-            'positions' => $positions, 'disciplines' => $disciplines]);
+        return new View('site.add_employer', ['disciplines' => $disciplines,
+            'departments' => $departments, 'positions' => $positions]);
     }
+
 
     public function disciplinesByEmployer(): string
     {
