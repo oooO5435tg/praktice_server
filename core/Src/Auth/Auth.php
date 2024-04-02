@@ -66,4 +66,19 @@ class Auth
         return $token;
     }
 
+    public static function checkAdmin(): bool
+    {
+        if (self::$user->getRoleId() == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function checkDekanat(): bool
+    {
+        if (self::$user->getRoleId() == 2) {
+            return true;
+        }
+        return false;
+    }
 }
