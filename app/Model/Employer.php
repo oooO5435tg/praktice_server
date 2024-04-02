@@ -20,5 +20,6 @@ class Employer extends Model
         'adress',
         'id_department',
         'id_position',
+        'image'
     ];
 }

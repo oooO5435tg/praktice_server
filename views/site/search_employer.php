@@ -24,6 +24,13 @@
                             <p>Должность: <?= $employer->id_position?></p>
                             <p>Кафедра: <?= $employer->id_department?></p>
                             <p>Дисциплины: <?= $employer->id_discipline?></p>
+
+                            <?php
+                                if (!empty($employer->image)):
+                                    echo '<img src="public/img/' . $employer->image . '">';
+                                endif;
+                            ?>
+
                         </li>
                     <?php endforeach; ?>
                 <?php endif; ?>

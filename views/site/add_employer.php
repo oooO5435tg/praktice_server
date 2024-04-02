@@ -35,6 +35,7 @@
         </label>
         <label><input type="date" name="birthday" class="signup_input" placeholder="Дата рождение"></label>
         <label><input type="text" name="adress" class="signup_input" placeholder="Адрес прописки"></label>
+        <label><input type="file" name="image" alt="изображение"></label>
         <button style="width: 540px; height: 60px; background-color: #224d8c; border: none;
         border-radius: 10px; color: #b1caee; font-size: 16px;">Создать</button>
     </form>

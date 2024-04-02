@@ -131,8 +131,24 @@ class Site
                     ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
 
-            if (Employer::create($request->all())) {
-                app()->route->redirect('/add_employer');
+            if ($_FILES['image']){
+                $image = $_FILES['image'];
+                $root = app()->settings->getRootPath();
+                $path = $_SERVER['DOCUMENT_ROOT'] . $root . '/public/img';
+                $name = mt_rand(0, 100) . $image['name'];
+
+                move_uploaded_file($image['tmp_name'], $path . $name);
+
+                $employer_data = $request->all();
+                $employer_data['image'] = $name;
+
+                if (Employer::create($employer_data)) {
+                    app()->route->redirect('/add_employer');
+                }
+            } else {
+                if (Employer::create($request->all())) {
+                    app()->route->redirect('/add_employer');
+                }
             }
         }
         return new View('site.add_employer', ['disciplines' => $disciplines,
