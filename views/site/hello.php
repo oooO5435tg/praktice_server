@@ -28,20 +28,20 @@
         </div>
         <div style="background-color: #ceddf5; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center; margin-right: 50px">
             <h3>Сотрудники по кафедре(ам)</h3>
-            <div style="display: flex; flex-direction: column">
-                <?php
-                $departments = \Model\Department::all();
-                foreach ($departments as $department) {
-                    echo "<div style='display: flex; align-items: center; margin-bottom: 10px;'>
-                            <input type='checkbox'>
-                            <label>" . e($department->title_department) . "</label>
-                          </div>";
-                }
-                ?>
-            </div>
-            <button class="hello-btn">
-                <a href="<?= app()->route->getUrl('/employers_by_department') ?>">Смотреть</a>
-            </button>
+            <form style="width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center;" method="get" action="<?= app()->route->getUrl('/employers_by_department') ?>">
+                <div style="display: flex; flex-direction: column">
+                    <?php
+                    $departments = \Model\Department::all();
+                    foreach ($departments as $department) {
+                        echo "<div style='display: flex; align-items: center; margin-bottom: 10px;'>
+                        <input type='checkbox' name='department_ids[]' value='{$department->id_department}'>
+                        <label>" . e($department->title_department) . "</label>
+                      </div>";
+                    }
+                    ?>
+                </div>
+                <button class="hello-btn" type="submit">Смотреть</button>
+            </form>
         </div>
         <div style="background-color: #ceddf5; width: 500px; height: 500px; display: flex; flex-direction: column; align-items: center">
             <h3>Дисциплины, читаемые сотрудниками по кафедре(ам)</h3>
@@ -64,15 +64,15 @@
 </div>
 
 <style>
-    form{
-        width: 1120px;
-        height: 400px;
-        background-color: #ceddf5;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+    /*form{*/
+    /*    width: 1120px;*/
+    /*    height: 400px;*/
+    /*    background-color: #ceddf5;*/
+    /*    display: flex;*/
+    /*    flex-direction: column;*/
+    /*    align-items: center;*/
+    /*    justify-content: center;*/
+    /*}*/
     .hello-btn{
         background-color: #224d8c;
         width: 220px;

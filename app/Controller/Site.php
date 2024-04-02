@@ -116,9 +116,12 @@ class Site
         return new View('site.disciplines_by_employer');
     }
 
-    public function employerByDepartment(): string
+    public function employerByDepartment(Request $request): string
     {
-        return new View('site.employers_by_department');
+        $departmentIds = $request->get('department_ids', []);
+        $employers = Employer::whereIn('id_department', $departmentIds)->get();
+
+        return new View('site.employers_by_department', ['employers' => $employers]);
     }
 
     public function disciplinesByEmployerDepartment(): string
