@@ -23,3 +23,6 @@ Route::add('GET', '/employers_by_department', [Controller\Site::class, 'employer
     ->middleware('auth');
 Route::add('GET', '/disciplines_employer_department', [Controller\Site::class, 'disciplinesByEmployerDepartment'])
     ->middleware('auth');
+
+Route::add(['GET', 'POST'], '/search_employer', [Controller\Site::class, 'search_employer'])
+    ->middleware('dekanat');

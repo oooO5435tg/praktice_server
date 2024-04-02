@@ -125,4 +125,19 @@ class Site
     {
         return new View('site.disciplines_employer_department');
     }
+
+    public function search_employer(Request $request): string
+    {
+        $employers = Employer::all();
+
+        if ($request->method === 'POST') {
+            $temp = $request->all();
+            $employerID = $temp['employer'];
+            $filteredEmployers = Employer::whereRaw("LOWER(surname) LIKE ?", ["%{$employerID}%"])->get();
+
+            return new View('site.search_employer', ['filteredEmployers' => $filteredEmployers]);
+        }
+
+        return new View('site.search_employer', ['employers' => $employers]);
+    }
 }
