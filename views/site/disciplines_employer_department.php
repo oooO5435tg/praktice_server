@@ -2,19 +2,19 @@
     <h2>Дисциплины, читаемые сотрудниками по кафедре(ам) - </h2>
 </div>
 <div style="display: flex; flex-direction: column; margin: 0 100px">
-    <?php if (count($employers)): ?>
+    <?php if (count($employers)):?>
         <ul>
-            <?php foreach ($employers as $employer): ?>
-                <li><?= $employer->surname ?>:
+            <?php foreach ($employers as $employer):?>
+                <li><?= $employer->surname?>:
                     <ul>
-                        <?php foreach ($employer->disciplines as $discipline): ?>
-                            <li><?= $discipline->id_discipline ?></li>
-                        <?php endforeach; ?>
+                        <?php foreach ($disciplines[$employer->id_user] as $discipline):?>
+                            <li><?= $discipline->title_discipline?></li>
+                        <?php endforeach;?>
                     </ul>
                 </li>
-            <?php endforeach; ?>
+            <?php endforeach;?>
         </ul>
-    <?php else: ?>
+    <?php else:?>
         <p>У выбранных(ой) кафедр(ы) нет дисциплин, читаемых сотрудниками.</p>
-    <?php endif; ?>
+    <?php endif;?>
 </div>

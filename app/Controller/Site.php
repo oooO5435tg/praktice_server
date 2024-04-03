@@ -248,14 +248,18 @@ class Site
         return new View('site.add_employer', ['disciplines' => $disciplines, 'departments' => $departments, 'positions' => $positions]);
     }
 
-
-
     public function disciplinesByEmployer(Request $request): string
     {
         $employerIds = $request->get('employer_ids', []);
         $employers = Employer::whereIn('id_user', $employerIds)->get();
 
-        return new View('site.disciplines_by_employer', ['employers' => $employers]);
+        $disciplines = ListDiscipline::whereIn('id_user', $employerIds)
+            ->join('disciplines', 'list_disciplines.id_discipline', '=', 'disciplines.id_discipline')
+            ->select('list_disciplines.id_user', 'disciplines.title_discipline')
+            ->get()
+            ->groupBy('id_user');
+
+        return new View('site.disciplines_by_employer', ['employers' => $employers, 'disciplines' => $disciplines]);
     }
 
     public function employerByDepartment(Request $request): string
@@ -271,7 +275,13 @@ class Site
         $departmentIds = $request->get('department_ids', []);
         $employers = Employer::whereIn('id_department', $departmentIds)->get();
 
-        return new View('site.disciplines_employer_department', ['employers' => $employers]);
+        $disciplines = ListDiscipline::whereIn('id_user', $employers->pluck('id_user'))
+            ->join('disciplines', 'list_disciplines.id_discipline', '=', 'disciplines.id_discipline')
+            ->select('list_disciplines.id_user', 'disciplines.title_discipline')
+            ->get()
+            ->groupBy('id_user');
+
+        return new View('site.disciplines_employer_department', ['employers' => $employers, 'disciplines' => $disciplines]);
     }
 
     public function search_employer(Request $request): string
