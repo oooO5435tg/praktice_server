@@ -81,28 +81,35 @@ class Site
 
     public function addDepartment(Request $request): string
     {
-//        $departments = Department::all();
-        if ($request->method === 'POST'){
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'title_department' => ['required', 'no_special_chars', 'no_digits'],
+            ], [
+                'required' => 'Поле :field пусто',
+                'no_special_chars' => 'Поле :field не должно содержать спец символов',
+                'no_digits' => 'Поле :field не должно содержать цифр'
+            ]);
+
+            if($validator->fails()){
+                return new View('site.add_position',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+
             $departments = $request->all();
             if (!empty($_FILES['image'])) {
                 $image = $_FILES['image'];
                 $root = app()->settings->getRootPath();
-                $path = $_SERVER['DOCUMENT_ROOT'] . $root . '/public/img/';
+                $path = $_SERVER['DOCUMENT_ROOT']. $root. '/public/img/';
                 $name = $image['name'];
 
-                move_uploaded_file($image['tmp_name'], $path . $name);
+                move_uploaded_file($image['tmp_name'], $path. $name);
 
-//                $departments = $request->all();
                 $departments['image'] = $name;
-
-                if (Department::create($departments)) {
-                    app()->route->redirect('/add_department');
-                }
-            } else {
-                echo 'AAAAA';
             }
 
-            app()->route->redirect('/add_department');
+            if (Department::create($departments)) {
+                app()->route->redirect('/add_department');
+            }
         }
 
         return new View('site.add_department');
