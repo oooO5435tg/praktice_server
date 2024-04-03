@@ -35,6 +35,9 @@
                         <input type='checkbox' name='department_ids[]' value='{$department->id_department}'>
                         <label>" . e($department->title_department) . "</label>
                       </div>";
+                        if (!empty($department->image)){
+                            echo '<img src="/praktice_server/public/img/' . $department->image . '"';
+                        }
                     }
                     ?>
                 </div>

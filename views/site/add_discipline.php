@@ -1,5 +1,6 @@
 <div style="display: flex; flex-direction: column; align-items: center">
     <h2>Добавление дисциплины</h2>
+    <h3><?= $message ?? ''; ?></h3>
     <form method="POST">
         <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <input type="text" name="title_discipline" placeholder="Название" style="width: 900px; height: 60px; background-color: #F1F1F1; border: none; border-radius: 10px">

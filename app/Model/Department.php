@@ -9,6 +9,7 @@ class Department extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'title_department'
+        'title_department',
+        'image'
     ];
 }

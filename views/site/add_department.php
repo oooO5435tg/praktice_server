@@ -1,8 +1,10 @@
 <div style="display: flex; flex-direction: column; align-items: center">
     <h2>Добавление кафедры</h2>
-    <form method="POST">
+    <h3><?= $message ?? ''; ?></h3>
+    <form method="POST" enctype="multipart/form-data">
         <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <input type="text" name="title_department" placeholder="Название" style="width: 900px; height: 60px; background-color: #F1F1F1; border: none; border-radius: 10px">
+        <input type="file" name="image">
         <button type="submit" style="width: 540px; height: 60px; background-color: #224d8c;
         border: none; border-radius: 10px; margin-top: 50px;
         color: #b1caee; font-size: 16px;">Добавить</button>
