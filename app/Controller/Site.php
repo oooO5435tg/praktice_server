@@ -19,7 +19,7 @@ use Src\Validator\Validator;
 
 use Illuminate\Support\Facades\DB;
 
-
+use Middlewares;
 
 class Site
 {
