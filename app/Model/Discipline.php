@@ -12,4 +12,9 @@ class Discipline extends Model
         'id_discipline',
         'title_discipline'
     ];
+
+    public function employers()
+    {
+        return $this->belongsToMany(Employer::class, 'list_disciplines', 'id_discipline', 'id_user');
+    }
 }

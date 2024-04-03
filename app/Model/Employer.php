@@ -22,4 +22,9 @@ class Employer extends Model
         'id_position',
         'image'
     ];
+
+    public function disciplines()
+    {
+        return $this->belongsToMany(Discipline::class, 'list_disciplines', 'id_user', 'id_discipline');
+    }
 }

@@ -23,7 +23,17 @@
                             <p>Адрес: <?= $employer->adress?></p>
                             <p>Должность: <?= $employer->id_position?></p>
                             <p>Кафедра: <?= $employer->id_department?></p>
-                            <p>Дисциплины: <?= $employer->id_discipline?></p>
+                            <p>Дисциплины: </p>
+                            <?php if (!empty($disciplines)): ?>
+                                <ul>
+                                    <?php foreach ($disciplines as $discipline): ?>
+                                        <li><?= $discipline->id_discipline ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php else: ?>
+                                <p>Нет дисциплин.</p>
+                            <?php endif; ?>
+
 
                             <?php
                                 if (!empty($employers)):

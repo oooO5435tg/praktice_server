@@ -106,13 +106,62 @@ class Site
         return new View('site.add_discipline', ['title_discipline' => $title_discipline]);
     }
 
+//    public function addEmployer(Request $request): string
+//    {
+//        $disciplines = Discipline::all();
+//        $departments = Department::all();
+//        $positions = Position::all();
+//        if ($request->method === 'POST') {
+//
+//            $validator = new Validator($request->all(), [
+//                'surname' => ['required'],
+//                'name' => ['required'],
+//                'patronymic' => ['required'],
+//                'gender' => ['required'],
+//                'id_position' => ['required'],
+//                'id_department' => ['required'],
+//                'birthday' => ['required'],
+//                'adress' => ['required'],
+//            ], [
+//                'required' => 'Поле :field пусто',
+//            ]);
+//
+//            if($validator->fails()){
+//                return new View('site.add_employer',
+//                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+//            }
+//
+//            if ($_FILES['image']){
+//                $image = $_FILES['image'];
+//                $root = app()->settings->getRootPath();
+//                $path = $_SERVER['DOCUMENT_ROOT'] . $root . '/public/img';
+//                $name = mt_rand(0, 1000) . $image['name'];
+//
+//                move_uploaded_file($image['tmp_name'], $path . $name);
+//
+//                $employer_data = $request->all();
+//                $employer_data['image'] = $name;
+//
+//                if (Employer::create($employer_data)) {
+//                    app()->route->redirect('/add_employer');
+//                }
+//            } else {
+//                if (Employer::create($request->all())) {
+//                    app()->route->redirect('/add_employer');
+//                }
+//            }
+//        }
+//        return new View('site.add_employer', ['disciplines' => $disciplines,
+//            'departments' => $departments, 'positions' => $positions]);
+//    }
+
     public function addEmployer(Request $request): string
     {
         $disciplines = Discipline::all();
         $departments = Department::all();
         $positions = Position::all();
-        if ($request->method === 'POST') {
 
+        if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
                 'surname' => ['required'],
                 'name' => ['required'],
@@ -122,38 +171,28 @@ class Site
                 'id_department' => ['required'],
                 'birthday' => ['required'],
                 'adress' => ['required'],
+                'selected_disciplines' => ['required', 'array'], // Добавляем валидацию для выбранных дисциплин
             ], [
                 'required' => 'Поле :field пусто',
             ]);
 
             if($validator->fails()){
-                return new View('site.add_employer',
-                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+                return new View('site.add_employer', ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
 
-            if ($_FILES['image']){
-                $image = $_FILES['image'];
-                $root = app()->settings->getRootPath();
-                $path = $_SERVER['DOCUMENT_ROOT'] . $root . '/public/img';
-                $name = mt_rand(0, 1000) . $image['name'];
+            // Создание сотрудника
+            $employer = Employer::create($request->all());
 
-                move_uploaded_file($image['tmp_name'], $path . $name);
+            // Привязка выбранных дисциплин к сотруднику
+            $employer->disciplines()->attach($request->selected_disciplines);
 
-                $employer_data = $request->all();
-                $employer_data['image'] = $name;
-
-                if (Employer::create($employer_data)) {
-                    app()->route->redirect('/add_employer');
-                }
-            } else {
-                if (Employer::create($request->all())) {
-                    app()->route->redirect('/add_employer');
-                }
-            }
+            // Перенаправление после успешного создания
+            app()->route->redirect('/add_employer');
         }
-        return new View('site.add_employer', ['disciplines' => $disciplines,
-            'departments' => $departments, 'positions' => $positions]);
+
+        return new View('site.add_employer', ['disciplines' => $disciplines, 'departments' => $departments, 'positions' => $positions]);
     }
+
 
 
     public function disciplinesByEmployer(): string
@@ -187,7 +226,9 @@ class Site
                 return new View('site.search_employer', ['message' => 'Ничего не найдено.']);
             }
 
-            return new View('site.search_employer', ['filteredEmployers' => $filteredEmployers]);
+            $disciplines = $filteredEmployers->first()->disciplines; // Получаем дисциплины найденного сотрудника
+
+            return new View('site.search_employer', ['filteredEmployers' => $filteredEmployers, 'disciplines' => $disciplines]);
         }
 
         return new View('site.search_employer', ['employers' => $employers]);
