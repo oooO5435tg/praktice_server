@@ -135,7 +135,7 @@ class Site
                 $image = $_FILES['image'];
                 $root = app()->settings->getRootPath();
                 $path = $_SERVER['DOCUMENT_ROOT'] . $root . '/public/img';
-                $name = mt_rand(0, 100) . $image['name'];
+                $name = mt_rand(0, 1000) . $image['name'];
 
                 move_uploaded_file($image['tmp_name'], $path . $name);
 

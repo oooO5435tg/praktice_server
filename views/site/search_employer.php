@@ -26,9 +26,16 @@
                             <p>Дисциплины: <?= $employer->id_discipline?></p>
 
                             <?php
-                                if (!empty($employer->image)):
-                                    echo '<img src="public/img/' . $employer->image . '">';
+                                if (!empty($employers)):
+                                    foreach ($employers as $employer) {
+                                        if (!empty($employer->image)):
+                                            echo '<img src="public/img/' . $employer->image . '">';
+                                        endif;
+                                    }
                                 endif;
+
+                                var_dump(['image']);
+                                var_dump(['path']);
                             ?>
 
                         </li>
