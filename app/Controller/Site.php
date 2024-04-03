@@ -17,8 +17,6 @@ use Src\Auth\Auth;
 use Src\Validator\Validator;
 
 
-
-
 use Illuminate\Support\Facades\DB;
 
 
@@ -195,9 +193,12 @@ class Site
 
 
 
-    public function disciplinesByEmployer(): string
+    public function disciplinesByEmployer(Request $request): string
     {
-        return new View('site.disciplines_by_employer');
+        $employerIds = $request->get('employer_ids', []);
+        $employers = Employer::whereIn('id_user', $employerIds)->get();
+
+        return new View('site.disciplines_by_employer', ['employers' => $employers]);
     }
 
     public function employerByDepartment(Request $request): string
@@ -208,9 +209,12 @@ class Site
         return new View('site.employers_by_department', ['employers' => $employers]);
     }
 
-    public function disciplinesByEmployerDepartment(): string
+    public function disciplinesByEmployerDepartment(Request $request): string
     {
-        return new View('site.disciplines_employer_department');
+        $departmentIds = $request->get('department_ids', []);
+        $employers = Employer::whereIn('id_department', $departmentIds)->get();
+
+        return new View('site.disciplines_employer_department', ['employers' => $employers]);
     }
 
     public function search_employer(Request $request): string
@@ -226,7 +230,8 @@ class Site
                 return new View('site.search_employer', ['message' => 'Ничего не найдено.']);
             }
 
-            $disciplines = $filteredEmployers->first()->disciplines; // Получаем дисциплины найденного сотрудника
+            $employer = $filteredEmployers->first();
+            $disciplines = $employer->disciplines;
 
             return new View('site.search_employer', ['filteredEmployers' => $filteredEmployers, 'disciplines' => $disciplines]);
         }

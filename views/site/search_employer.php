@@ -23,16 +23,13 @@
                             <p>Адрес: <?= $employer->adress?></p>
                             <p>Должность: <?= $employer->id_position?></p>
                             <p>Кафедра: <?= $employer->id_department?></p>
-                            <p>Дисциплины: </p>
-                            <?php if (!empty($disciplines)): ?>
-                                <ul>
-                                    <?php foreach ($disciplines as $discipline): ?>
-                                        <li><?= $discipline->id_discipline ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            <?php else: ?>
-                                <p>Нет дисциплин.</p>
-                            <?php endif; ?>
+                            <p>Дисциплины:</p>
+                            <ul>
+                                <?php foreach ($disciplines as $discipline): ?>
+                                    <li><?= $discipline->id_discipline ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+
 
 
                             <?php
@@ -43,9 +40,6 @@
                                         endif;
                                     }
                                 endif;
-
-                                var_dump(['image']);
-                                var_dump(['path']);
                             ?>
 
                         </li>
