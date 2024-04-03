@@ -91,7 +91,7 @@ class Site
             ]);
 
             if($validator->fails()){
-                return new View('site.add_position',
+                return new View('site.add_department',
                     ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
 
@@ -223,7 +223,7 @@ class Site
                 'id_department' => ['required'],
                 'birthday' => ['required', 'birthday_valid'],
                 'adress' => ['required', 'no_special_chars'],
-                'selected_disciplines' => ['required', 'array'], // Добавляем валидацию для выбранных дисциплин
+                'selected_disciplines' => ['required'],
             ], [
                 'required' => 'Поле :field пусто',
                 'no_special_chars' => 'Поле :field не должно содержать спец символов',
@@ -232,7 +232,7 @@ class Site
             ]);
 
             if($validator->fails()){
-                return new View('site.add_employer', ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+                return new View('site.add_employer', ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'disciplines' => $disciplines]);
             }
 
             // Создание сотрудника
