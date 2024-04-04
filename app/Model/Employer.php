@@ -19,12 +19,16 @@ class Employer extends Model
         'birthday',
         'adress',
         'id_department',
-        'id_position',
-        'image'
+        'id_position'
     ];
 
     public function disciplines()
     {
         return $this->belongsToMany(Discipline::class, 'list_disciplines', 'id_user', 'id_discipline');
+    }
+
+    public function position()
+    {
+        return $this->hasOne(Position::class, 'id_position', 'id_position');
     }
 }

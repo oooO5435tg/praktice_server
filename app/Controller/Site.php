@@ -158,55 +158,6 @@ class Site
         return new View('site.add_discipline');
     }
 
-//    public function addEmployer(Request $request): string
-//    {
-//        $disciplines = Discipline::all();
-//        $departments = Department::all();
-//        $positions = Position::all();
-//        if ($request->method === 'POST') {
-//
-//            $validator = new Validator($request->all(), [
-//                'surname' => ['required'],
-//                'name' => ['required'],
-//                'patronymic' => ['required'],
-//                'gender' => ['required'],
-//                'id_position' => ['required'],
-//                'id_department' => ['required'],
-//                'birthday' => ['required'],
-//                'adress' => ['required'],
-//            ], [
-//                'required' => 'Поле :field пусто',
-//            ]);
-//
-//            if($validator->fails()){
-//                return new View('site.add_employer',
-//                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
-//            }
-//
-//            if ($_FILES['image']){
-//                $image = $_FILES['image'];
-//                $root = app()->settings->getRootPath();
-//                $path = $_SERVER['DOCUMENT_ROOT'] . $root . '/public/img';
-//                $name = mt_rand(0, 1000) . $image['name'];
-//
-//                move_uploaded_file($image['tmp_name'], $path . $name);
-//
-//                $employer_data = $request->all();
-//                $employer_data['image'] = $name;
-//
-//                if (Employer::create($employer_data)) {
-//                    app()->route->redirect('/add_employer');
-//                }
-//            } else {
-//                if (Employer::create($request->all())) {
-//                    app()->route->redirect('/add_employer');
-//                }
-//            }
-//        }
-//        return new View('site.add_employer', ['disciplines' => $disciplines,
-//            'departments' => $departments, 'positions' => $positions]);
-//    }
-
     public function addEmployer(Request $request): string
     {
         $disciplines = Discipline::all();
@@ -291,7 +242,9 @@ class Site
         if ($request->method === 'POST') {
             $temp = $request->all();
             $employerID = $temp['employer'];
-            $filteredEmployers = Employer::whereRaw("LOWER(surname) LIKE ?", ["%{$employerID}%"])->get();
+            $filteredEmployers = Employer::whereRaw("LOWER(surname) LIKE?", ["%{$employerID}%"])
+                ->with('position') // Add this line to load the related position model
+                ->get();
 
             if (count($filteredEmployers) === 0) {
                 return new View('site.search_employer', ['message' => 'Ничего не найдено.']);
