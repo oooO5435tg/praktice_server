@@ -1,7 +1,7 @@
 <div>
     <form method="post">
         <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF()?>"/>
-        <label>Введите фамилию<input type="text" name="employer"></label>
+        <label>Введите фамилию<input type="text" name="employer"  required></label>
         <button>Найти</button>
     </form>
     <div>

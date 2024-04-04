@@ -1,5 +1,5 @@
 <div style="display: flex; flex-direction: column; align-items: center">
-    <h2>Сотрудники по кафедре(ам) -</h2>
+    <h2>Сотрудники по кафедре(ам)</h2>
     <div style="display: flex; flex-direction: column; margin: 0 100px">
         <?php if (count($employers)): ?>
             <ul>
