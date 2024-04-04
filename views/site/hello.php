@@ -36,7 +36,7 @@
                         <label>" . e($department->title_department) . "</label>
                       </div>";
                         if (!empty($department->image)){
-                            echo '<img src="/praktice_server/public/img/' . $department->image . '"';
+                            echo '<img src="/praktice_server/public/img/' . $department->image . '" " style="width: 50px; height: 50px">';
                         }
                     }
                     ?>

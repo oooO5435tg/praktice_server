@@ -2,9 +2,9 @@
 return [
     'driver' => 'mysql',
     'host' => 'localhost',
-    'database' => 'mvc',
-    'username' => 'root',
-    'password' => '',
+    'database' => 'aakirmnp_m1',
+    'username' => 'aakirmnp',
+    'password' => 'LBbSAv',
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix' => '',
