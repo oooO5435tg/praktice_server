@@ -16,7 +16,8 @@
         "illuminate/events": "10.x-dev",
         "nikic/fast-route": "^2.0@dev",
         "oooo5435tg/collect": "dev-main",
-        "oooo5435tg/package": "dev-main"
+        "oooo5435tg/package": "dev-main",
+        "oooo5435tg/imageuploader": "dev-main"
     },
     "autoload": {
         "psr-4": {

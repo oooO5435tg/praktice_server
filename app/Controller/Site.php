@@ -4,23 +4,16 @@ namespace Controller;
 
 use Model\Department;
 use Model\Discipline;
-use Model\Position;
 use Model\Employer;
 use Model\ListDiscipline;
-
+use Model\Position;
 use Model\Post;
 use Model\User;
-use Src\Request;
-use Src\View;
 use Src\Auth\Auth;
-
+use Src\Request;
 use Src\Validator\Validator;
-
-
-use Illuminate\Support\Facades\DB;
-
-use Middlewares;
-
+use Src\View;
+use imageuploader\ImageUploader;
 class Site
 {
     public function index(Request $request): string
@@ -96,15 +89,11 @@ class Site
             }
 
             $departments = $request->all();
-            if (!empty($_FILES['image'])) {
-                $image = $_FILES['image'];
-                $root = app()->settings->getRootPath();
-                $path = $_SERVER['DOCUMENT_ROOT']. $root. '/public/img/';
-                $name = $image['name'];
+            $imageUploader = new ImageUploader(); // Создаем экземпляр класса ImageUploader
+            $imageName = $imageUploader->upload($departments);
 
-                move_uploaded_file($image['tmp_name'], $path. $name);
-
-                $departments['image'] = $name;
+            if (!empty($imageName)) {
+                $departments['image'] = $imageName;
             }
 
             if (Department::create($departments)) {
